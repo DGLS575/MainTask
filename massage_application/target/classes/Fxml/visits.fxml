@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="clients_container" stylesheets="@../Styles/authors.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.main.Controllers.VisitsController">
+   <children>
+      <Button fx:id="btn_new_visit" layoutX="20.0" layoutY="490.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="105.0" text="New Visit" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" />
+      <Button fx:id="btn_logout" layoutX="457.0" layoutY="490.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="105.0" text="Logout" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+      <TableView fx:id="tbl_visits" layoutX="27.0" layoutY="69.0" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="125.0">
+        <columns>
+          <TableColumn fx:id="col_id" minWidth="90.0" prefWidth="-1.0" text="Id" />
+          <TableColumn fx:id="col_first_name" minWidth="90.0" prefWidth="-1.0" text="First Name" />
+            <TableColumn fx:id="col_last_name" minWidth="90.0" prefWidth="-1.0" text="Last Name" />
+            <TableColumn fx:id="col_email" minWidth="90.0" prefWidth="-1.0" text="Email" />
+            <TableColumn fx:id="col_date" minWidth="90.0" prefWidth="-1.0" text="Date" />
+			<TableColumn fx:id="col_time" minWidth="90.0" prefWidth="-1.0" text="Time" />
+            <TableColumn fx:id="col_completed" minWidth="90.0" prefWidth="-1.0" text="Completed" />
+			<TableColumn fx:id="col_income" minWidth="90.0" prefWidth="-1.0" text="Income" />
+			<TableColumn fx:id="col_notes" minWidth="90.0" prefWidth="-1.0" text="Notes" />
+        </columns>
+         <contextMenu>
+            <ContextMenu fx:id="ctx_table_item_menu">
+              <items>
+                <MenuItem fx:id="mi_complete" mnemonicParsing="false" text="Complete" />
+				<MenuItem fx:id="mi_edit" mnemonicParsing="false" text="Edit" />
+				<MenuItem fx:id="mi_delete" mnemonicParsing="false" text="Delete" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
+      </TableView>
+      <Label alignment="CENTER" layoutY="25.0" text="Visits" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="20.0" layoutY="542.0" text="Total Income:" AnchorPane.bottomAnchor="72.0" AnchorPane.leftAnchor="20.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="dp_filter_to" layoutX="525.0" layoutY="85.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="85.0" />
+      <Button fx:id="btn_clear_filter" layoutX="727.0" layoutY="79.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="105.0" text="Clear Filter" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="79.0" />
+      <DatePicker fx:id="dp_filter_from" layoutX="293.0" layoutY="85.0" AnchorPane.rightAnchor="365.0" AnchorPane.topAnchor="85.0" />
+      <Label layoutX="486.0" layoutY="89.0" prefHeight="16.0" prefWidth="7.0" text="-" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="89.0" />
+      <Label fx:id="lbl_total_income" layoutX="149.0" layoutY="542.0" text="0000000" AnchorPane.bottomAnchor="72.0" AnchorPane.leftAnchor="150.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbl_username" layoutX="20.0" layoutY="20.0" text="[Username]" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
