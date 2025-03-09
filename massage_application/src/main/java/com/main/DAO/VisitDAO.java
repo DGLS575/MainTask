@@ -1,10 +1,8 @@
 package com.main.DAO;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.time.LocalDate;
 import java.util.logging.Logger;
 
 import com.main.Models.Visit;
@@ -27,22 +25,21 @@ public class VisitDAO {
 		return null;
 	}
 
-	public void create(String firstName, String lastName, String email, String date, String time, boolean completed, double income, String note) {
-		String sql = "INSERT INTO authors (first_name, last_name, email, city, date, user_id) VALUES (?, ?, ?, ?, ?, ?)";
+	public void create(String firstName, String lastName, String phone, String email, String date, String time, boolean completed, double income, String note) {
+		String sql = "INSERT INTO visits (first_name, last_name, phone, email, date, time, completed, income, note, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		int userId = Model.getInstance().getCurrentUserId();
 
 		try (PreparedStatement statement = connection.prepareStatement(sql)) {
 			statement.setString(1, firstName);
 			statement.setString(2, lastName);
-			statement.setString(3, email);
-			statement.setString(4, date);
-			statement.setString(5, time);
-			statement.setBoolean(6, completed);
-			statement.setDouble(7, income);
-			statement.setString(8, note);
-
-			statement.setDate(5, Date.valueOf(LocalDate.now()));
-			statement.setInt(6, userId);
+			statement.setString(3, phone);
+			statement.setString(4, email);
+			statement.setString(5, date);
+			statement.setString(6, time);
+			statement.setBoolean(7, completed);
+			statement.setDouble(8, income);
+			statement.setString(9, note);
+			statement.setInt(10, userId);
 
 			statement.executeUpdate();
 
@@ -54,18 +51,41 @@ public class VisitDAO {
 
 	
 	public void update(Visit entity) {
-		
+		String sql = "UPDATE visits SET first_name = ?, last_name = ?, phone = ?, email = ?, date = ?, time = ?, completed = ?, income = ?, note = ? WHERE id = ?";
+		try (PreparedStatement statement = connection.prepareStatement(sql)) {
+			statement.setString(1, entity.firstNameProperty().get());
+			statement.setString(2, entity.lastNameProperty().get());
+			statement.setString(3, entity.phoneProperty().get());
+			statement.setString(4, entity.emailProperty().get());
+			statement.setString(5, entity.dateProperty().get());
+			statement.setString(6, entity.timeProperty().get());
+			statement.setBoolean(7, entity.completedProperty().get());
+			statement.setDouble(8, entity.incomeProperty().get());
+			statement.setString(9, entity.noteProperty().get());
+			statement.setInt(10, entity.idProperty().get());
+			statement.executeUpdate();
+			logger.info("Visit updated successfully!");
+		} catch (Exception ex) {
+			InfoUtility.error("Error updating visit: " + ex.getMessage());
+		}
 	}
 
 	
 	public void delete(int id) {
-		
+		String sql = "DELETE FROM visits WHERE id = ?";
+		try (PreparedStatement statement = connection.prepareStatement(sql)) {
+			statement.setInt(1, id);
+			statement.executeUpdate();
+			logger.info("Visit deleted successfully!");
+		} catch (Exception ex) {
+			InfoUtility.error("Error deleting visit: " + ex.getMessage());
+		}
 	}
 
 	
 	public ObservableList<Visit> findAll() {
 		ObservableList<Visit> visits = FXCollections.observableArrayList();
-		String sql = "SELECT id, first_name, last_name, email, city, date FROM authors";
+		String sql = "SELECT id, first_name, last_name, phone, email, date, time, completed, income, note FROM visits";
 
 		try (PreparedStatement statement = this.connection.prepareStatement(sql)){
 			ResultSet resultSet = statement.executeQuery();
@@ -73,6 +93,7 @@ public class VisitDAO {
 				int id = resultSet.getInt("id");
 				String firstName = resultSet.getString("first_name");
 				String lastName = resultSet.getString("last_name");
+				String phone = resultSet.getString("phone");
 				String email = resultSet.getString("email");
 				String date = resultSet.getString("date");
 				String time = resultSet.getString("time");
@@ -80,7 +101,7 @@ public class VisitDAO {
 				double income = resultSet.getDouble("income");
 				String note = resultSet.getString("note");
 
-				Visit visit = new Visit(id, firstName, lastName, email, date, time, completed, income, note);
+				Visit visit = new Visit(id, firstName, lastName, phone, email, date, time, completed, income, note);
 				visits.add(visit);
 			}
 		} catch (Exception ex) {

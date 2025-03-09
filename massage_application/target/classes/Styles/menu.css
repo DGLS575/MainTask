@@ -1,0 +1,61 @@
+.main_menu_container{
+	-fx-background-color: #474747;
+	-fx-padding: 20px;
+	-fx-border-radius: 10px;
+	-fx-border-color: #272727;
+	-fx-border-width: 1px;
+	-fx-padding: 0 10 0 10;
+	-fx-alignment: center;
+}
+
+.left_container	{
+	-fx-bachgound-color: #fff;
+	-fx-background-radius: 10px;
+	-fx-effect: dropshadow(two-pass-box, #aaa, 5, 0, 0, 4);
+}
+
+/* Logo section */
+
+.title_container{
+	-fx-background-color: #fff;
+	-fx-background-radius: 20, 20, 0, 0;
+	-fx-alignment: top-center;
+	-fx-padding: 10;
+}
+
+.title_container Text{
+	-fx-fill: #000;
+	-fx-font-size: 2em;
+}
+
+/* Navigation section */
+
+.navigation_container{
+	-fx-padding: 10 10 10 20;
+	-fx-spacing: 20;
+}
+
+.navigation_container Button{
+	-fx-pref-width: 150px;
+	-fx-pref-height: 40px;
+	-fx-background-color: #272727;
+	-fx-text-fill: #fff;
+	-fx-font-size: 1.1em;
+	-fx-border-radius: 5px;
+	-fx-alignment: center-left;
+	-fx-effect: dropshadow(three-pass-box, #ddd, 5, 0, 0, 6);
+}
+
+.navigation_container Button:hover{
+	-fx-cursor: hand;
+}
+
+.alt_navigation_button{
+	-fx-pref-width: 150px;
+	-fx-pref-height: 40px;
+	-fx-background-color: #fff;
+	-fx-text-fill: #272727;
+	-fx-font-size: 1.1em;
+	-fx-border-radius: 5px;
+	-fx-alignment: center-left;
+}

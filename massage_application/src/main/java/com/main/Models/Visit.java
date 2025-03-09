@@ -13,6 +13,7 @@ public class Visit {
 	private IntegerProperty id;
 	private StringProperty firstName;
 	private StringProperty lastName;
+	private StringProperty phone;
 	private StringProperty email;
 	private StringProperty date;
 	private StringProperty time;
@@ -22,17 +23,12 @@ public class Visit {
 
 	/*
 	 * Author constructor
-	 * 
-	 * @param id the author id
-	 * @param firstName the author first name
-	 * @param lastName the author last name
-	 * @param email the author email
-	 * @param city the author city
 	 */
-	public Visit(int id, String firstName, String lastName, String email, String date, String time, boolean completed, double income, String note) {
+	public Visit(int id, String firstName, String lastName, String phone, String email, String date, String time, boolean completed, double income, String note) {
 		this.id = new SimpleIntegerProperty(id);
 		this.firstName = new SimpleStringProperty(firstName);
 		this.lastName = new SimpleStringProperty(lastName);
+		this.phone = new SimpleStringProperty(phone);
 		this.email = new SimpleStringProperty(email);
 		this.date = new SimpleStringProperty(date);
 		this.time = new SimpleStringProperty(time);
@@ -51,6 +47,10 @@ public class Visit {
 
 	public StringProperty lastNameProperty() {
 		return lastName;
+	}
+
+	public StringProperty phoneProperty() {
+		return phone;
 	}
 
 	public StringProperty emailProperty() {
@@ -89,6 +89,10 @@ public class Visit {
 		this.lastName.set(lastName);
 	}
 
+	public void setPhone(String phone) {
+		this.phone.set(phone);
+	}
+
 	public void setEmail(String email) {
 		this.email.set(email);
 	}
@@ -115,6 +119,6 @@ public class Visit {
 	
 	@Override
 	public String toString() {
-		return String.format("Visit [FirstName=%s, LastName=%s, Email=%s, Date=%s, Time=%s, Completed=%s, Income=%s, Note=%s]", firstName.get(), lastName.get(), email.get(), date.get(), time.get(), completed.get(), income.get(), note.get());
+		return String.format("Visit [FirstName=%s, LastName=%s, Phone=%s, Email=%s, Date=%s, Time=%s, Completed=%s, Income=%s, Note=%s]", firstName.get(), lastName.get(), phone.get(), email.get(), date.get(), time.get(), completed.get(), income.get(), note.get());
 	}
 }

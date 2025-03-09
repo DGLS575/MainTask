@@ -40,7 +40,7 @@ public class ViewFactory {
 	 * Sets the current view based on the specified view type
 	 */
 	public FXMLLoader showView(ViewType viewType) {
-		if (viewType == null || viewType == this.viewType)
+		if (viewType == null)
 			return null;
 
 		this.previousViewType = this.viewType;

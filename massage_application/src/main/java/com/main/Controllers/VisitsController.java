@@ -2,12 +2,15 @@ package com.main.Controllers;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.main.Enums.ViewType;
 import com.main.Models.Model;
+import com.main.Models.Visit;
 import com.main.Utilities.InfoUtility;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -38,34 +41,37 @@ public class VisitsController implements Initializable {
 
 	//Table
 	@FXML
-	public TableView tbl_visits;
+	public TableView<Visit> tbl_visits;
 
 	@FXML
-	public TableColumn col_id;
+	public TableColumn<Visit, Integer> col_id;
 
 	@FXML
-	public TableColumn col_first_name;
+	public TableColumn<Visit, String> col_first_name;
 
 	@FXML
-	public TableColumn col_last_name;
+	public TableColumn<Visit, String> col_last_name;
 
 	@FXML
-	public TableColumn col_email;
+	public TableColumn<Visit, String> col_phone;
 
 	@FXML
-	public TableColumn col_date;
+	public TableColumn<Visit, String> col_email;
 
 	@FXML
-	public TableColumn col_time;
+	public TableColumn<Visit, String> col_date;
 
 	@FXML
-	public TableColumn col_completed;
+	public TableColumn<Visit, String> col_time;
 
 	@FXML
-	public TableColumn col_income;
+	public TableColumn<Visit, Boolean> col_completed;
 
 	@FXML
-	public TableColumn col_notes;
+	public TableColumn<Visit, Double> col_income;
+
+	@FXML
+	public TableColumn<Visit, String> col_notes;
 
 	//Context menu
 	@FXML
@@ -99,6 +105,27 @@ public class VisitsController implements Initializable {
 		btn_clear_filter.setOnAction(e -> onClearFilter());
 		dp_filter_from.setOnHidden(e -> onFilter());
 		dp_filter_to.setOnHidden(e -> onFilter());
+
+		//InitializeTable
+		onFilter();
+
+		//Set context menu actions
+		mi_complete.setOnAction(e -> onCompleteVisit());
+		mi_edit.setOnAction(e -> onEditVisit());
+		mi_delete.setOnAction(e -> onDeleteVisit());
+
+		//Disable context menu items if no visit item is selected
+		tbl_visits.setOnContextMenuRequested(e -> {
+			if (tbl_visits.getSelectionModel().getSelectedItem() == null) {
+				mi_complete.setDisable(true);
+				mi_edit.setDisable(true);
+				mi_delete.setDisable(true);
+			} else {
+				mi_complete.setDisable(false);
+				mi_edit.setDisable(false);
+				mi_delete.setDisable(false);
+			}
+		});
 	}
 
 	/*
@@ -122,6 +149,34 @@ public class VisitsController implements Initializable {
 	public void onClearFilter() {
 		dp_filter_from.setValue(null);
 		dp_filter_to.setValue(null);
+		onFilter();
+	}
+
+	/*
+	 * Open the complete visit window
+	 */
+	public void onCompleteVisit() {
+
+	}
+
+	/*
+	 * Open the edit visit window
+	 */
+	public void onEditVisit() {
+
+	}
+
+	/*
+	 * Delete the selected visit
+	 */
+	public void onDeleteVisit() {
+		//Delete the selected visit
+		Visit selectedVisit = tbl_visits.getSelectionModel().getSelectedItem();
+		if (selectedVisit == null)
+			return;
+		
+		Model.getInstance().deleteVisit(selectedVisit.idProperty().get());
+		onFilter();
 	}
 
 	/*
@@ -135,6 +190,31 @@ public class VisitsController implements Initializable {
 			return;
 		}
 
-		System.out.println("Filtering by date");
+		ObservableList<Visit> allVisits = Model.getInstance().getAllVisits();
+		ArrayList<Visit> filteredVisits = new ArrayList<>();
+		for (Visit visit : allVisits) {
+			LocalDate visitDate = LocalDate.parse(visit.dateProperty().get());
+			if (visitDate.isAfter(dateFrom) && visitDate.isBefore(dateTo))
+				filteredVisits.add(visit);
+		}
+		allVisits.clear();
+
+		//Clear Table
+		tbl_visits.getItems().clear();
+		updateTotalIncome();
+
+		//Add filtered visits
+		if (filteredVisits.isEmpty())
+			return;
+		tbl_visits.getItems().addAll(filteredVisits);
+		updateTotalIncome();
+	}
+
+	private void updateTotalIncome() {
+		double totalIncome = 0;
+		for (Visit visit : tbl_visits.getItems())
+			totalIncome += visit.incomeProperty().get();
+		
+		lbl_total_income.setText(String.valueOf(totalIncome) + " €");
 	}
 }

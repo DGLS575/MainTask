@@ -115,10 +115,26 @@ public class Model {
 	}
 
 	/* 
-	 * Create author
+	 * Create visit
 	*/
-	public void createAuthor(String firstName, String lastName, String email, String date, String time, boolean completed, double income, String note) {
+	public void createVisit(String firstName, String lastName, String email, String date, String time, boolean completed, double income, String note) {
 		visitDAO.create(firstName, lastName, email, date, time, completed, income, note);
+	}
+
+	/*
+	 * Update visit
+	 * @param the visit to update with new values
+	 */
+	public void updateVisit(Visit visit) {
+		visitDAO.update(visit);
+	}
+
+	/*
+	 * Delete visit
+	 * @param id the id of the visit to delete
+	 */
+	public void deleteVisit(int id) {
+		visitDAO.delete(id);
 	}
 
 	/*
