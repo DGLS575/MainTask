@@ -1,6 +1,7 @@
 package com.main.Models;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import com.main.DAO.VisitDAO;
 import com.main.DAO.UserDAO;
@@ -117,8 +118,8 @@ public class Model {
 	/* 
 	 * Create visit
 	*/
-	public void createVisit(String firstName, String lastName, String email, String date, String time, boolean completed, double income, String note) {
-		visitDAO.create(firstName, lastName, email, date, time, completed, income, note);
+	public void createVisit(String firstName, String lastName, String phone, String email, LocalDateTime date, boolean completed, double income, String note) {
+		visitDAO.create(firstName, lastName, phone, email, date, completed, income, note);
 	}
 
 	/*

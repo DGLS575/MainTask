@@ -2,6 +2,7 @@ package com.main.Controllers;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -12,6 +13,7 @@ import com.main.Utilities.InfoUtility;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -59,10 +61,7 @@ public class VisitsController implements Initializable {
 	public TableColumn<Visit, String> col_email;
 
 	@FXML
-	public TableColumn<Visit, String> col_date;
-
-	@FXML
-	public TableColumn<Visit, String> col_time;
+	public TableColumn<Visit, LocalDateTime> col_date;
 
 	@FXML
 	public TableColumn<Visit, Boolean> col_completed;
@@ -126,6 +125,17 @@ public class VisitsController implements Initializable {
 				mi_delete.setDisable(false);
 			}
 		});
+
+		//Set table columns
+		col_id.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
+		col_first_name.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
+		col_last_name.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
+		col_phone.setCellValueFactory(cellData -> cellData.getValue().phoneProperty());
+		col_email.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
+		col_date.setCellValueFactory(cellData -> cellData.getValue().dateProperty());
+		col_completed.setCellValueFactory(cellData -> cellData.getValue().completedProperty());
+		col_income.setCellValueFactory(cellData -> cellData.getValue().incomeProperty().asObject());
+		col_notes.setCellValueFactory(cellData -> cellData.getValue().noteProperty());
 	}
 
 	/*
@@ -156,14 +166,26 @@ public class VisitsController implements Initializable {
 	 * Open the complete visit window
 	 */
 	public void onCompleteVisit() {
+		Visit selectedVisit = tbl_visits.getSelectionModel().getSelectedItem();
+		if (selectedVisit == null)
+			return;
 
+		FXMLLoader loader = Model.getInstance().getViewFactory().showView(ViewType.COMPLETE_VISIT);
+		CompleteVisitController controller = loader.getController();
+		controller.setVisit(selectedVisit);
 	}
 
 	/*
 	 * Open the edit visit window
 	 */
 	public void onEditVisit() {
+		Visit selectedVisit = tbl_visits.getSelectionModel().getSelectedItem();
+		if (selectedVisit == null)
+			return;
 
+		FXMLLoader loader = Model.getInstance().getViewFactory().showView(ViewType.EDIT_VISIT);
+		EditVisitController controller = loader.getController();
+		controller.setVisit(selectedVisit);
 	}
 
 	/*
@@ -193,7 +215,7 @@ public class VisitsController implements Initializable {
 		ObservableList<Visit> allVisits = Model.getInstance().getAllVisits();
 		ArrayList<Visit> filteredVisits = new ArrayList<>();
 		for (Visit visit : allVisits) {
-			LocalDate visitDate = LocalDate.parse(visit.dateProperty().get());
+			LocalDate visitDate = visit.dateProperty().get().toLocalDate();
 			if (visitDate.isAfter(dateFrom) && visitDate.isBefore(dateTo))
 				filteredVisits.add(visit);
 		}
