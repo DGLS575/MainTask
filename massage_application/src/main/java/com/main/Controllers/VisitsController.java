@@ -121,7 +121,7 @@ public class VisitsController implements Initializable {
 				mi_delete.setDisable(true);
 			} else {
 				mi_complete.setDisable(false);
-				mi_edit.setDisable(false);
+				mi_edit.setDisable(tbl_visits.getSelectionModel().getSelectedItem().completedProperty().get());
 				mi_delete.setDisable(false);
 			}
 		});

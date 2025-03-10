@@ -62,8 +62,10 @@ public class VisitDAO {
 			statement.setDouble(7, entity.incomeProperty().get());
 			statement.setString(8, entity.noteProperty().get());
 			statement.setInt(9, entity.idProperty().get());
-			statement.executeUpdate();
-			logger.info("Visit updated successfully!");
+
+			logger.info("Updating visit with id: " + entity.idProperty().get());
+			int lines = statement.executeUpdate();
+			logger.info("Visit updated successfully! With " + lines + " lines affected.");
 		} catch (Exception ex) {
 			InfoUtility.error("Error updating visit: " + ex.getMessage());
 		}
