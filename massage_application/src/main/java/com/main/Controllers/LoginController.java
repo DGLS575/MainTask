@@ -55,9 +55,10 @@ public class LoginController implements Initializable {
 		Model.getInstance().checkCredentials(txt_username_field.getText(), passwd.getText());
 
 		//If login is successful, open dashboard
-		if (Model.getInstance().getLoginSuccessFlag())
-			Model.getInstance().getViewFactory().showView(ViewType.VISITS);
-		else {
+		if (Model.getInstance().getLoginSuccessFlag()) {
+			VisitsController controller = Model.getInstance().getViewFactory().showView(ViewType.VISITS).getController();
+			controller.showTodaysVisits();
+		} else {
 			txt_username_field.setText(null);
 			passwd.setText(null);
 			AlertUtility.displayError("Invalid credentials");

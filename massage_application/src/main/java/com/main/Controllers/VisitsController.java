@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import com.main.Enums.ViewType;
 import com.main.Models.Model;
 import com.main.Models.Visit;
+import com.main.Utilities.AlertUtility;
 import com.main.Utilities.InfoUtility;
 
 import javafx.collections.ObservableList;
@@ -232,6 +233,19 @@ public class VisitsController implements Initializable {
 		updateTotalIncome();
 	}
 
+	public void showTodaysVisits() {
+		ObservableList<Visit> allVisits = Model.getInstance().getAllVisits();
+		int todaysVisits = 0;
+		for (Visit visit : allVisits) {
+			if (visit.dateProperty().get().toLocalDate().isEqual(LocalDate.now()))
+				todaysVisits++;
+		}
+		AlertUtility.displayInformation("There are " + todaysVisits + " visits today.");
+	}
+
+	/*
+	 * Update the total income label
+	 */
 	private void updateTotalIncome() {
 		double totalIncome = 0;
 		for (Visit visit : tbl_visits.getItems())
