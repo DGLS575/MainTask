@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="clients_container" stylesheets="@../Styles/authors.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.main.Controllers.VisitsController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../Styles/main.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.main.Controllers.VisitsController">
    <children>
       <Button fx:id="btn_new_visit" layoutX="20.0" layoutY="490.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="105.0" text="New Visit" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" />
       <Button fx:id="btn_logout" layoutX="457.0" layoutY="490.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="105.0" text="Logout" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" />
-      <TableView fx:id="tbl_visits" layoutX="27.0" layoutY="69.0" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="125.0">
+      <TableView fx:id="tbl_visits" layoutX="27.0" layoutY="69.0" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="135.0">
         <columns>
           <TableColumn fx:id="col_id" minWidth="90.0" prefWidth="-1.0" text="Id" />
           <TableColumn fx:id="col_first_name" minWidth="90.0" prefWidth="-1.0" text="First Name" />
@@ -37,7 +37,7 @@
             </ContextMenu>
          </contextMenu>
       </TableView>
-      <Label alignment="CENTER" layoutY="25.0" text="Visits" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+      <Label alignment="CENTER" layoutY="25.0" styleClass="view-title" text="Visits" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <font>
             <Font size="30.0" />
          </font>
@@ -47,16 +47,16 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <DatePicker fx:id="dp_filter_to" layoutX="525.0" layoutY="85.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="85.0" />
-      <Button fx:id="btn_clear_filter" layoutX="727.0" layoutY="79.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="105.0" text="Clear Filter" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="79.0" />
-      <DatePicker fx:id="dp_filter_from" layoutX="293.0" layoutY="85.0" AnchorPane.rightAnchor="365.0" AnchorPane.topAnchor="85.0" />
-      <Label layoutX="486.0" layoutY="89.0" prefHeight="16.0" prefWidth="7.0" text="-" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="89.0" />
+      <DatePicker fx:id="dp_filter_to" layoutX="597.0" layoutY="93.0" AnchorPane.rightAnchor="149.66666666666663" AnchorPane.topAnchor="93.0" />
+      <Button fx:id="btn_clear_filter" layoutX="817.0" layoutY="87.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="105.0" text="Clear Filter" AnchorPane.rightAnchor="20.333333333333258" AnchorPane.topAnchor="87.0" />
+      <DatePicker fx:id="dp_filter_from" layoutX="382.0" layoutY="93.0" AnchorPane.rightAnchor="364.66666666666663" AnchorPane.topAnchor="93.0" />
+      <Label layoutX="586.0" layoutY="97.0" prefHeight="16.0" prefWidth="7.0" text="-" AnchorPane.rightAnchor="349.33333333333326" AnchorPane.topAnchor="97.0" />
       <Label fx:id="lbl_total_income" layoutX="149.0" layoutY="542.0" text="0000000" AnchorPane.bottomAnchor="72.0" AnchorPane.leftAnchor="150.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lbl_username" layoutX="20.0" layoutY="20.0" text="[Username]" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+      <Label fx:id="lbl_username" layoutX="24.0" layoutY="25.0" prefHeight="42.0" prefWidth="145.0" styleClass="username" text="[Username]">
          <font>
             <Font size="18.0" />
          </font>

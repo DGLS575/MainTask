@@ -1,0 +1,63 @@
+.title {
+	-fx-font-size: 3em;
+	-fx-font-weight: bold;
+	-fx-background-color: #446;
+	-fx-padding: 10px;
+	-fx-alignment: center;
+	-fx-text-fill: #fff;
+}
+
+.username {
+	-fx-font-size: 1.5em;
+	-fx-font-weight: bold;
+	-fx-text-fill: #fff;
+	-fx-background-color: #446;
+	-fx-padding: 10px;
+	-fx-opacity: 0.8;
+}
+
+.view-title {
+	-fx-font-size: 2em;
+	-fx-font-weight: bold;
+	-fx-background-color: #446;
+	-fx-padding: 10px;
+	-fx-alignment: center;
+	-fx-text-fill: #fff;
+	-fx-pref-width: 500px;
+}
+
+TextField, PasswordField {
+	-fx-background-color: #fff;
+	-fx-border-color: #000;
+	-fx-border-width: 1px;
+	-fx-border-radius: 5px;
+}
+
+Hyperlink {
+	-fx-font-size: 1.2em;
+	-fx-font-weight: bold;
+	-fx-text-fill: #44f;
+}
+
+Hyperlink:hover {
+	-fx-cursor: hand;
+	-fx-text-fill: #3a6a9e;
+}
+
+Button {
+	-fx-pref-height: 36px;
+	-fx-pref-width: 105px;
+	-fx-background-color: #6b6b6b;
+	-fx-border-radius: 5px;
+	-fx-text-fill: #fff;
+	-fx-font-size: 1.2em;
+}
+
+Button:active {
+	-fx-background-color: #4b4b4b;
+}
+
+Button:hover {
+	-fx-cursor: hand;
+	-fx-background-color: #3b3b3b;
+}
