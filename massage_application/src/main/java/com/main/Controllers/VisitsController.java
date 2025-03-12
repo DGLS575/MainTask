@@ -233,6 +233,9 @@ public class VisitsController implements Initializable {
 		updateTotalIncome();
 	}
 
+	/*
+	 * Show the number of visits today
+	 */
 	public void showTodaysVisits() {
 		ObservableList<Visit> allVisits = Model.getInstance().getAllVisits();
 		int todaysVisits = 0;

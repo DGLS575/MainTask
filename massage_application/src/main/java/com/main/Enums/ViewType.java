@@ -11,6 +11,9 @@ public enum ViewType {
 	EDIT_VISIT,
 	COMPLETE_VISIT; //Allow the user to enter income from the visit
 
+	/*
+	 * Returns the name of the specified view type
+	 */
 	public static String getName(ViewType viewType) {
 		switch (viewType) {
 			case INFO:
@@ -32,6 +35,9 @@ public enum ViewType {
 		}
 	}
 	
+	/*
+	 * Returns whether the title should be visible for the specified view type
+	 */
 	public static boolean getTitleVisible(ViewType viewType) {
 		switch (viewType) {
 			case LOGIN:

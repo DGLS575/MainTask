@@ -37,15 +37,24 @@ public class CompleteVisitController implements Initializable {
 		btn_complete.setOnAction(actionEvent -> completeVisit());
 	}
 
+	/*
+	 * Sets the visit to be completed
+	 */
 	public void setVisit(Visit visit) {
 		this.visit = visit;
 		populateFieldsWithVisitData();
 	}
 
+	/*
+	 * Navigate back to the visits view
+	 */
 	private void backToVisits() {
 		Model.getInstance().getViewFactory().showView(ViewType.VISITS);
 	}
 
+	/*
+	 * Complete the visit
+	 */
 	private void completeVisit() {
 		Visit newVisit = buildVisit();
 		if (newVisit == null)
@@ -56,6 +65,9 @@ public class CompleteVisitController implements Initializable {
 		AlertUtility.displayInformation("Visit completed successfully!");
 	}
 
+	/*
+	 * Populate the fields with the visit data
+	 */
 	private void populateFieldsWithVisitData() {
 		if (visit == null)
 			return;
@@ -63,6 +75,9 @@ public class CompleteVisitController implements Initializable {
 		ta_note.setText(visit.noteProperty().get());
 	}
 	
+	/*
+	 * Build the visit object
+	 */
 	private Visit buildVisit() {
 		if (visit == null)
 		{

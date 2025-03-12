@@ -54,10 +54,16 @@ public class NewVisitController implements Initializable {
 		btn_create.setOnAction(actionEvent -> createVisit());
 	}
 
+	/*
+	 * Navigates back to the visits view
+	 */
 	private void backToVisits() {
 		Model.getInstance().getViewFactory().showView(ViewType.VISITS);
 	}
 	
+	/*
+	 * Creates a new visit
+	 */
 	private void createVisit() {
 		Visit visit = buildVisit();
 		if (visit == null)
@@ -68,6 +74,10 @@ public class NewVisitController implements Initializable {
 		AlertUtility.displayInformation("Visit has been created successfully.");
 	}
 
+	/*
+	 * Builds a visit object from the input fields
+	 * @return the visit object
+	 */
 	private Visit buildVisit() {
 		if (tf_first_name.getText().isEmpty() || tf_last_name.getText().isEmpty() || tf_phone.getText().isEmpty() || tf_email.getText().isEmpty() || dp_date.getValue() == null || tf_hour.getText().isEmpty() || tf_minute.getText().isEmpty()) {
 			AlertUtility.displayError("Please fill in all the fields.");

@@ -27,6 +27,9 @@ public class InfoController implements Initializable {
 		btn_back.setOnAction(actionEvent -> backToPreviousView());
 	}
 
+	/*
+	 * Sets the info text and type along with the corresponding text color
+	 */
 	public void setInfo(InfoType infoType, String info) {
 		switch (infoType) {
 			case INFO:
@@ -48,6 +51,9 @@ public class InfoController implements Initializable {
 		lbl_info.setText(info);
 	}
 
+	/*
+	 * Navigates back to the previous view
+	 */
 	private void backToPreviousView() {
 		Model.getInstance().getViewFactory().showPreviousView();
 	}
